@@ -1,12 +1,8 @@
-import AddUser from './components/AddUser'
-import AllUsers from './components/AllUsers'
-
+import Login from '@/app/components/Login'
 export default function Home() {
   return (
     <main>
-      <AddUser/>
-      <br/><br/>
-      <AllUsers/>
+      <Login/>
     </main>
   )
 }

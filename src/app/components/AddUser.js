@@ -1,7 +1,8 @@
-'use client'
 import React, { useState } from 'react';
-import { addUser } from '../redux/slice';
+import { addUser } from '../redux/userSlice';
 import { useDispatch } from 'react-redux';
+import { Form, Button } from 'react-bootstrap'; // Import React Bootstrap components
+import Link from 'next/link';
 
 export default function AddUser() {
   const [name, setName] = useState('');
@@ -13,25 +14,28 @@ export default function AddUser() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    dispatch(addUser(name))
+    dispatch(addUser(name));
     setName('');
   };
 
   return (
     <div>
       <h1>Add User</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nameInput">Name:</label>
-        <input
-          type="text"
-          id="nameInput"
-          value={name}
-          onChange={handleNameChange}
-          placeholder="Enter name"
-        />
-        {name && <p>You entered: {name}</p>}
-        <button type="submit">Submit</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="nameInput">
+          <Form.Label>Name:</Form.Label>
+          <Form.Control
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            placeholder="Enter name"
+          />
+          {name && <Form.Text>You entered: {name}</Form.Text>}
+        </Form.Group>
+        <Button variant="primary" type="submit">Submit</Button>
+      </Form>
+      <br />
+      <Link href='/removeUser'>User List</Link>
     </div>
   );
 }
